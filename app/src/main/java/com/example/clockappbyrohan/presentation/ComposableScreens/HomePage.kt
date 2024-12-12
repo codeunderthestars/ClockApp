@@ -39,80 +39,17 @@ import com.example.clockappbyrohan.ui.theme.MainTextColorOrange
 import com.example.clockappbyrohan.ui.theme.SecondaryTextColorOrange
 
 
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun HomePagePreviewKarlaLandscape() {
-//    CustomThemeKarla() {
-//        HomePage()
-//    }
-//}
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun HomePagePreviewKanitLandscape() {
-//    CustomThemeKanit() {
-//        HomePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun HomePagePreviewInterLandscape() {
-//    CustomThemeInter() {
-//        HomePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun HomePagePreviewPacificoLandscape() {
-//    CustomThemePacifico() {
-//        HomePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff )
-//@Composable
-//fun HomePagePreviewKarlaPortrait() {
-//    CustomThemeKarla() {
-//        HomePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun HomePagePreviewKanitPortrait() {
-//    CustomThemeKanit() {
-//        HomePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun HomePagePreviewInterPortrait() {
-//    CustomThemeInter() {
-//        HomePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun HomePagePreviewPacificoPortrait() {
-//    CustomThemePacifico() {
-//        HomePage()
-//    }
-//}
-
 
 @Composable
 fun HomePage(
-    modifier: Modifier = Modifier,
-    context: Context = LocalContext.current,
-    navController: NavHostController = rememberNavController(),
+    modifier: Modifier ,
+    context: Context ,
+    navController: NavHostController ,
     viewModel: MainScreenViewModel,
-    cardContainerColor: Color = CardBackgroundBlack,
-    backgroundColor: Color = Color.Black,
-    fontColor: Color = MainTextColorOrange,
-    secondaryFontColor: Color = SecondaryTextColorOrange
+    cardContainerColor: Color ,
+    backgroundColor: Color ,
+    fontColor: Color ,
+    secondaryFontColor: Color
 ) {
     viewModel.dosth()
 
@@ -175,10 +112,10 @@ fun HomePage(
                     ) {
                         Column {
                             Text(
-                                text = dateText, fontSize = 31.sp
+                                text = dateText, fontSize = 31.sp, color = fontColor
                             )
                             Text(
-                                text = dayText, fontSize = 22.sp
+                                text = dayText, fontSize = 22.sp, color = fontColor
                             )
                         }
                     }
@@ -211,27 +148,27 @@ fun HomePage(
                             Text(
                                 modifier = Modifier.weight(.5f),
                                 text = timeHourText,
-                                fontSize = 31.sp
+                                fontSize = 31.sp, color = fontColor
                             )
                             Spacer(modifier = Modifier.weight(.3f))
                             Text(
-                                modifier = Modifier.weight(.5f), text = ":", fontSize = 31.sp
+                                modifier = Modifier.weight(.5f), text = ":", fontSize = 31.sp, color = fontColor
                             )
 
                             Text(
                                 modifier = Modifier.weight(.5f),
                                 text = timeMinuteText,
-                                fontSize = 31.sp
+                                fontSize = 31.sp, color = fontColor
                             )
                             Spacer(modifier = Modifier.weight(.3f))
                             Text(
-                                modifier = Modifier.weight(.5f), text = ":", fontSize = 31.sp
+                                modifier = Modifier.weight(.5f), text = ":", fontSize = 31.sp, color = fontColor
                             )
 
                             Text(
                                 modifier = Modifier.weight(.5f),
                                 text = timeSecondText,
-                                fontSize = 31.sp
+                                fontSize = 31.sp, color = fontColor
                             )
                             Spacer(modifier = Modifier.weight(.2f))
                         }
@@ -272,14 +209,14 @@ fun HomePage(
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        text = temperatureText, fontSize = 31.sp
+                                        text = temperatureText, fontSize = 31.sp, color = fontColor
                                     )
                                 }
 
                                 Text(
                                     modifier = Modifier.weight(1f),
                                     text = feelsLikeText,
-                                    fontSize = 20.sp
+                                    fontSize = 20.sp, color = fontColor
                                 )
                             }
                             Row(
@@ -299,7 +236,7 @@ fun HomePage(
                                     )
                                     Spacer(modifier = Modifier.size(10.dp))
                                     Text(
-                                        text = rainText, fontSize = 24.sp
+                                        text = rainText, fontSize = 24.sp, color = fontColor
                                     )
                                 }
                                 Row(
@@ -313,7 +250,7 @@ fun HomePage(
                                     Text(
                                         modifier = Modifier.weight(1f),
                                         text = weatherConditionText,
-                                        fontSize = 20.sp
+                                        fontSize = 20.sp, color = fontColor
                                     )
 
                                 }
@@ -346,7 +283,7 @@ fun HomePage(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = zenModeText, fontSize = 24.sp
+                            text = zenModeText, fontSize = 24.sp, color = fontColor
                         )
                     }
                 }
@@ -362,40 +299,9 @@ fun HomePage(
         ) {
             Column(
                 Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.SpaceEvenly,
+                verticalArrangement = Arrangement.spacedBy(10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.weight(.3f))
-
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth(.8f)
-                        .weight(.6f), colors = CardDefaults.cardColors(
-                        containerColor = cardContainerColor,
-                        contentColor = backgroundColor
-                    ), shape = RoundedCornerShape(24.dp)
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .padding(8.dp)
-                            .fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceEvenly,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = dateText, fontSize = 36.sp
-                            )
-                            Text(
-                                text = dayText, fontSize = 34.sp
-                            )
-                        }
-                    }
-                }
-
                 Spacer(modifier = Modifier.weight(.2f))
 
                 Card(
@@ -408,7 +314,35 @@ fun HomePage(
                 ) {
                     Box(
                         modifier = Modifier
-                            .padding(8.dp)
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceEvenly,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = dateText, fontSize = 36.sp, color = fontColor
+                            )
+                            Text(
+                                text = dayText, fontSize = 34.sp, color = fontColor
+                            )
+                        }
+                    }
+                }
+
+
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth(.8f)
+                        .weight(.6f), colors = CardDefaults.cardColors(
+                        containerColor = cardContainerColor,
+                        contentColor = backgroundColor
+                    ), shape = RoundedCornerShape(24.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
                             .fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
@@ -421,34 +355,33 @@ fun HomePage(
                             Text(
                                 modifier = Modifier.weight(.5f),
                                 text = timeHourText,
-                                fontSize = 36.sp
+                                fontSize = 36.sp, color = fontColor
                             )
                             Spacer(modifier = Modifier.weight(.3f))
                             Text(
-                                modifier = Modifier.weight(.5f), text = ":", fontSize = 34.sp
+                                modifier = Modifier.weight(.5f), text = ":", fontSize = 34.sp, color = fontColor
                             )
 
                             Text(
                                 modifier = Modifier.weight(.5f),
                                 text = timeMinuteText,
-                                fontSize = 36.sp
+                                fontSize = 36.sp, color = fontColor
                             )
                             Spacer(modifier = Modifier.weight(.3f))
                             Text(
-                                modifier = Modifier.weight(.5f), text = ":", fontSize = 34.sp
+                                modifier = Modifier.weight(.5f), text = ":", fontSize = 34.sp, color = fontColor
                             )
 
                             Text(
                                 modifier = Modifier.weight(.5f),
                                 text = timeSecondText,
-                                fontSize = 36.sp
+                                fontSize = 36.sp, color = fontColor
                             )
                             Spacer(modifier = Modifier.weight(1.2f))
                         }
                     }
                 }
 
-                Spacer(modifier = Modifier.weight(.2f))
 
                 Card(
                     modifier = Modifier
@@ -460,7 +393,6 @@ fun HomePage(
                 ) {
                     Box(
                         modifier = Modifier
-                            .padding(3.dp)
                             .fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
@@ -480,14 +412,14 @@ fun HomePage(
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        text = temperatureText, fontSize = 36.sp
+                                        text = temperatureText, fontSize = 33.sp, color = fontColor
                                     )
                                 }
 
                                 Text(
                                     modifier = Modifier.weight(1f),
                                     text = feelsLikeText,
-                                    fontSize = 30.sp
+                                    fontSize = 28.sp, color = fontColor
                                 )
                             }
                             Row(
@@ -508,21 +440,20 @@ fun HomePage(
                                     )
                                     Spacer(modifier = Modifier.size(10.dp))
                                     Text(
-                                        text = rainText, fontSize = 30.sp
+                                        text = rainText, fontSize = 30.sp, color = fontColor
                                     )
                                 }
 
                                 Text(
                                     modifier = Modifier.weight(1f),
                                     text = weatherConditionText,
-                                    fontSize = 30.sp
+                                    fontSize = 30.sp, color = fontColor
                                 )
                             }
                         }
                     }
                 }
 
-                Spacer(modifier = Modifier.weight(.2f))
 
                 Card(
                     modifier = Modifier
@@ -545,12 +476,12 @@ fun HomePage(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = zenModeText, fontSize = 24.sp
+                            text = zenModeText, fontSize = 24.sp, color = fontColor
                         )
                     }
                 }
 
-                Spacer(modifier = Modifier.weight(.3f))
+                Spacer(modifier = Modifier.weight(.2f))
             }
         }
     }

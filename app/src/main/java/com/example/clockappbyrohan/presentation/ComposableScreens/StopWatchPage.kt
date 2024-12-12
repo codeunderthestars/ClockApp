@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.substring
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -32,81 +33,18 @@ import com.example.clockappbyrohan.ui.theme.CardBackgroundBlack
 import com.example.clockappbyrohan.ui.theme.MainTextColorOrange
 import com.example.clockappbyrohan.ui.theme.SecondaryTextColorOrange
 
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun StopWatchPagePreviewKarlaLandscape() {
-//    CustomThemeKarla() {
-//        StopWatchPage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun StopWatchPagePreviewKanitLandscape() {
-//    CustomThemeKanit() {
-//        StopWatchPage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun StopWatchPagePreviewInterLandscape() {
-//    CustomThemeInter() {
-//        StopWatchPage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun StopWatchPagePreviewPacificoLandscape() {
-//    CustomThemePacifico() {
-//        StopWatchPage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff )
-//@Composable
-//fun StopWatchPagePreviewKarlaPortrait() {
-//    CustomThemeKarla() {
-//        StopWatchPage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun StopWatchPagePreviewKanitPortrait() {
-//    CustomThemeKanit() {
-//        StopWatchPage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun StopWatchPagePreviewInterPortrait() {
-//    CustomThemeInter() {
-//        StopWatchPage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun StopWatchPagePreviewPacificoPortrait() {
-//    CustomThemePacifico() {
-//        StopWatchPage()
-//    }
-//}
 
 
 @Composable
 fun StopWatchPage(
-    modifier: Modifier = Modifier,
-    context: Context = LocalContext.current,
-    navController: NavHostController = rememberNavController(),
+    modifier: Modifier ,
+    context: Context ,
+    navController: NavHostController ,
     viewModel: StopWatchViewModel,
-    cardContainerColor: Color = CardBackgroundBlack,
-    backgroundColor: Color = Color.Black,
-    fontColor: Color = MainTextColorOrange,
-    secondaryFontColor: Color = SecondaryTextColorOrange
+    cardContainerColor: Color,
+    backgroundColor: Color ,
+    fontColor: Color ,
+    secondaryFontColor: Color
 ) {
     // Defining text variables
     var time=  viewModel.time.collectAsState()
@@ -156,10 +94,14 @@ fun StopWatchPage(
                                 .fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
-                            Column {
+                            Row(
+                                Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically
+
+                            ) {
                                 Text(
-                                    text = time.value.toString(), fontSize = 31.sp
+                                    text = time.value, fontSize = 31.sp, color = fontColor
                                 )
+
                             }
                         }
                     }
@@ -206,7 +148,7 @@ fun StopWatchPage(
                                         contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            text = resetText, fontSize = 24.sp
+                                            text = resetText, fontSize = 24.sp, color = fontColor
                                         )
                                     }
                                 }
@@ -232,7 +174,7 @@ fun StopWatchPage(
                                         contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            text = btnText, fontSize = 24.sp
+                                            text = btnText, fontSize = 24.sp, color = fontColor
                                         )
                                     }
                                 }
@@ -271,7 +213,7 @@ fun StopWatchPage(
                         ) {
                             Column {
                                 Text(
-                                    text = time.value, fontSize = 31.sp
+                                    text = time.value, fontSize = 31.sp, color = fontColor
                                 )
                             }
                         }
@@ -319,7 +261,7 @@ fun StopWatchPage(
                                         contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            text = resetText, fontSize = 24.sp
+                                            text = resetText, fontSize = 24.sp, color = fontColor
                                         )
                                     }
                                 }
@@ -345,7 +287,7 @@ fun StopWatchPage(
                                         contentAlignment = Alignment.Center
                                     ) {
                                         Text(
-                                            text = btnText, fontSize = 24.sp
+                                            text = btnText, fontSize = 24.sp, color = fontColor
                                         )
                                     }
                                 }

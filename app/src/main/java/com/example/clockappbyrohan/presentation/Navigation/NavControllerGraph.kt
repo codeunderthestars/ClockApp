@@ -1,6 +1,7 @@
 package com.example.clockappbyrohan.presentation.Navigation
 
 import android.content.Context
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,9 +17,11 @@ import com.example.clockappbyrohan.presentation.ComposableScreens.AlarmDetailPag
 import com.example.clockappbyrohan.presentation.ComposableScreens.AlarmHomePage
 import com.example.clockappbyrohan.presentation.ComposableScreens.HomePage
 import com.example.clockappbyrohan.presentation.ComposableScreens.StopWatchPage
+import com.example.clockappbyrohan.presentation.ComposableScreens.SwipeableScreens
 import com.example.clockappbyrohan.presentation.ComposableScreens.ZenModePage
 import com.example.clockappbyrohan.presentation.ViewModels.AlarmViewModel
 import com.example.clockappbyrohan.presentation.ViewModels.MainScreenViewModel
+import com.example.clockappbyrohan.presentation.ViewModels.SettingViewModel
 import com.example.clockappbyrohan.presentation.ViewModels.StopWatchViewModel
 import com.example.clockappbyrohan.ui.theme.CardBackgroundBlack
 import com.example.clockappbyrohan.ui.theme.MainTextColorOrange
@@ -32,25 +35,39 @@ fun NavControllerGraph(
     viewModel: MainScreenViewModel = hiltViewModel(),
     stopwatchViewModel: StopWatchViewModel = hiltViewModel(),
     alarmViewModel: AlarmViewModel = hiltViewModel(),
-    cardContainerColor: Color = CardBackgroundBlack,
-    backgroundColor: Color = Color.Black,
-    fontColor: Color = MainTextColorOrange,
-    secondaryFontColor: Color = SecondaryTextColorOrange
+    cardContainerColor: Color,
+    backgroundColor: Color ,
+    fontColor: Color ,
+    secondaryFontColor: Color ,
+    settingViewModel: SettingViewModel = hiltViewModel()
 
 ) {
 
     val sharedPreferences = context.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
     NavHost(
         navController = navController,
-        startDestination = "${sharedPreferences.getString("page", "home")}"
+        startDestination = "swipeScreen"//"${sharedPreferences.getString("page", "home")}"
     ) {      // to cache the initial screen in shared preferences
+        composable("swipeScreen") {
+            SwipeableScreens(
+                modifier = Modifier, navController = navController,
+                cardContainerColor = cardContainerColor,
+                backgroundColor = backgroundColor,
+                fontColor = fontColor,
+                secondaryFontColor = secondaryFontColor,
+                viewModel = viewModel,
+                stopwatchViewModel = stopwatchViewModel,
+                alarmViewModel = alarmViewModel,
+                settingViewModel = settingViewModel, context = context
+            )
+        }
         composable("home") {
             HomePage(
                 viewModel = viewModel, navController = navController,
                 cardContainerColor = cardContainerColor,
                 backgroundColor = backgroundColor,
                 fontColor = fontColor,
-                secondaryFontColor = secondaryFontColor
+                secondaryFontColor = secondaryFontColor, context = context, modifier = Modifier
             )
         }
         composable("zenMode") {

@@ -1,5 +1,6 @@
 package com.example.clockappbyrohan.presentation.ComposableScreens
 
+import android.app.NotificationManager
 import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,82 +37,43 @@ import com.example.clockappbyrohan.ui.theme.CustomThemePacifico
 import com.example.clockappbyrohan.ui.theme.MainTextColorOrange
 import com.example.clockappbyrohan.ui.theme.SecondaryTextColorOrange
 
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun ZenModePreviewPacificoLandscape() {
-//    CustomThemePacifico() {
-//        ZenModePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun ZenModePreviewInterLandscape() {
-//    CustomThemeInter() {
-//        ZenModePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun ZenModePreviewKarlaLandscape() {
-//    CustomThemeKarla() {
-//        ZenModePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff, widthDp = 720, heightDp = 360)
-//@Composable
-//fun ZenModePreviewKanitLandscape() {
-//    CustomThemeKanit() {
-//        ZenModePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun ZenModePreviewKanitPortrait() {
-//    CustomThemeKanit() {
-//        ZenModePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun ZenModePreviewPacificoPortrait() {
-//    CustomThemePacifico() {
-//        ZenModePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun ZenModePreviewInterPortrait() {
-//    CustomThemeInter() {
-//        ZenModePage()
-//    }
-//}
-//
-//@Preview(showBackground = true, backgroundColor = 0xffffff)
-//@Composable
-//fun ZenModePreviewKarlaPortrait() {
-//    CustomThemeKarla() {
-//        ZenModePage()
-//    }
-//}
+fun enableDoNotDisturb(context: Context) {
+    val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
+    if (notificationManager.isNotificationPolicyAccessGranted) {
+        println("DND turned on")
+        notificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_NONE)
+    }
+}
 
+fun disableDoNotDisturb(context: Context) {
+    val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+    if (notificationManager.isNotificationPolicyAccessGranted) {
+        println("DND turned off")
+        notificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL)
+    }
+}
 @Composable
 fun ZenModePage(
-    modifier: Modifier = Modifier,
-    context: Context = LocalContext.current,
-    navController: NavHostController = rememberNavController(),
+    modifier: Modifier ,
+    context: Context ,
+    navController: NavHostController ,
     viewModel: MainScreenViewModel,
     cardContainerColor: Color = CardBackgroundBlack,
     backgroundColor: Color = Color.Black,
     fontColor: Color = MainTextColorOrange,
     secondaryFontColor: Color = SecondaryTextColorOrange
 ) {
+
+    DisposableEffect(Unit) {
+        enableDoNotDisturb(context)
+
+        onDispose {
+            disableDoNotDisturb(context)
+        }
+    }
+
     val localConfiguration = LocalConfiguration.current
     val isPortrait =
         localConfiguration.orientation == android.content.res.Configuration.ORIENTATION_PORTRAIT
@@ -135,16 +99,16 @@ fun ZenModePage(
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = timeHourText, fontSize = 70.sp)
-                    Text(text = ":", fontSize = 70.sp)
-                    Text(text = timeMinuteText, fontSize = 70.sp)
-                    Text(text = ":", fontSize = 70.sp)
-                    Text(text = timeSecondText, fontSize = 70.sp)
+                    Text(text = timeHourText, fontSize = 70.sp, color = fontColor)
+                    Text(text = ":", fontSize = 70.sp, color = fontColor)
+                    Text(text = timeMinuteText, fontSize = 70.sp, color = fontColor)
+                    Text(text = ":", fontSize = 70.sp, color = fontColor)
+                    Text(text = timeSecondText, fontSize = 70.sp, color = fontColor)
                 }
 
                 Column {
-                    Text(text = dateText, fontSize = 30.sp)
-                    Text(text = dayText, fontSize = 30.sp)
+                    Text(text = dateText, fontSize = 30.sp, color = fontColor)
+                    Text(text = dayText, fontSize = 30.sp, color = fontColor)
                 }
 
 
@@ -167,17 +131,17 @@ fun ZenModePage(
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = timeHourText, fontSize = 70.sp)
-                    Text(text = ":", fontSize = 70.sp)
-                    Text(text = timeMinuteText, fontSize = 70.sp)
-                    Text(text = ":", fontSize = 70.sp)
-                    Text(text = timeSecondText, fontSize = 70.sp)
+                    Text(text = timeHourText, fontSize = 70.sp, color = fontColor)
+                    Text(text = ":", fontSize = 70.sp, color = fontColor)
+                    Text(text = timeMinuteText, fontSize = 70.sp, color = fontColor)
+                    Text(text = ":", fontSize = 70.sp, color = fontColor)
+                    Text(text = timeSecondText, fontSize = 70.sp, color = fontColor)
                 }
 
                 Row {
-                    Text(text = dateText, fontSize = 30.sp)
+                    Text(text = dateText, fontSize = 30.sp, color = fontColor)
                     Spacer(modifier = Modifier.size(20.dp))
-                    Text(text = dayText, fontSize = 30.sp)
+                    Text(text = dayText, fontSize = 30.sp, color = fontColor)
                 }
 
 
@@ -189,3 +153,4 @@ fun ZenModePage(
 
 
 }
+

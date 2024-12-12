@@ -53,4 +53,4 @@ SQLite is an offline database that is locally stored in the user’s device and 
 
 #### Read_external_storage
 This permission is used to access the SQLite database in the android phone to store the alarm's data , as if android is restarted then all the scheduled alarm are removed by the android 
-system. So we are storing them in SQLite database and if the device restarts or is rebooted in any case , the previous alarm will be rescheduled again.# ClockApp
+system. So we are storing them in SQLite database and if the device restarts or is rebooted in any case , the previous alarm will be rescheduled again.
